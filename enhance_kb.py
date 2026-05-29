@@ -306,6 +306,37 @@ def _iter_all_endpoints(kb):
                 yield ep_path, ep_data
 
 
+def _inject_sect_vsize_guide(templates, http_methods):
+    """为SECT端点注入vSIZE数组各索引的字段含义说明。
+    vSIZE是一个数值数组，每个位置有固定的工程含义（如高度、宽度等），
+    不同SHAPE类型的vSIZE含义和数量不同。MIDAS网页表格虽有9列，
+    但每个截面类型只用其中一部分，**只用到的列写数据，不用的不要补0占位**。
+    若无此说明，LLM会自行猜测数组顺序（通常猜反宽/高）或补多余0。"""
+    vsize_guide = (
+        "【vSIZE数组索引含义】\n"
+        "vSIZE 是一个数值数组，不同截面类型使用的数组长度不同。\n"
+        "⚠️ 核心规则：**只用截面类型实际需要的参数个数，不要补多余的 0！**\n"
+        "MIDAS 数组顺序：**高度(H)在前，宽度(B)在后**。\n\n"
+        "箱型截面(SHAPE=\"B\") — VALUE/DBUSER 均只用 4 个值:\n"
+        "  [0] H  — 截面总高度 (m)\n"
+        "  [1] B  — 截面总宽度 (m)\n"
+        "  [2] tw — 腹板厚度 (m)\n"
+        "  [3] tf — 翼缘厚度 (m)，顶板和底板同厚\n"
+        "  ✅ 正确: vSIZE=[1.5, 3.0, 0.3, 0.3]  ← 4个值\n"
+        "  ❌ 错误: vSIZE=[1.5, 3.0, 0.3, 0.3, 0, 0, 0, 0]  ← 不要补0!\n\n"
+        "其他常用 SHAPE 类型:\n"
+        "  实心矩形(SHAPE=\"SB\"): 2个值 [H, B]\n"
+        "  实心圆形(SHAPE=\"SR\"): 1个值 [D]\n"
+        "  H型钢(SHAPE=\"H\"): 参照 MIDAS UI 输入对话框的字段数\n\n"
+        "通用规则：每个截面类型只填写它实际需要的参数个数，表格中空着的列不要补 0 占位。"
+    )
+    for method in http_methods:
+        if method in templates:
+            if f"{method}_note" not in templates:
+                templates[f"{method}_note"] = ""
+            templates[f"{method}_note"] = vsize_guide + "\n" + templates[f"{method}_note"]
+
+
 def enhance_knowledge_base():
     with open(KB_PATH, "r", encoding="utf-8") as f:
         kb = json.load(f)
@@ -549,6 +580,10 @@ def _enhance_one_endpoint(ep_data, ep_path):
                     "此接口使用Assign+ID(非Assign+Numeric)，字段直接放在Assign下(无PARAM数组)。"
                     "\n" + templates[f"{method}_note"]
                 )
+
+    # 6. SECT截面vSIZE字段说明：注入截面尺寸数组的索引含义
+    if ep_path == "/db/SECT":
+        _inject_sect_vsize_guide(templates, http_methods)
 
     ep_data["request_templates"] = templates
 
