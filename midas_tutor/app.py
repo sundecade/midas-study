@@ -359,6 +359,31 @@ def _generate_html_page(code, title="MIDAS API 代码示例"):
     return html_content
 
 
+def _build_mapi_config():
+    """根据用户侧边栏设置，构建传递给 LLM 的 MAPI 连接配置指令。"""
+    mode = st.session_state.get("_mapi_mode", "registry")
+    if mode == "manual":
+        base_url = st.session_state.get("_mapi_base_url", "").strip()
+        mapi_key = st.session_state.get("_mapi_key", "").strip()
+        if base_url and mapi_key:
+            return (
+                f"用户已在界面中手动输入了 MIDAS 连接信息，请直接使用以下值，"
+                f"**不要写 import winreg 或任何注册表读取代码**：\n"
+                f'base_url = "{base_url}"\n'
+                f'mapi_key = "{mapi_key}"\n'
+                f"直接在代码中定义这两个变量即可，跳过注册表获取步骤。"
+            )
+        else:
+            return (
+                "用户选择了手动输入模式但尚未填写完整信息，"
+                "请暂时使用注册表方式获取配置。"
+            )
+    else:
+        return (
+            "用户未提供手动配置，请使用 winreg 从 Windows 注册表自动获取 base_url 和 mapi_key。"
+        )
+
+
 def _run_code_safely(code, timeout=15):
     """在子进程中安全执行 Python 代码并返回输出。"""
     import subprocess, tempfile
@@ -425,6 +450,10 @@ def init_session_state():
         "_search_done": False,
         "_ai_input": "",
         "_lang": "zh",
+        # MAPI 连接配置
+        "_mapi_mode": "registry",   # "registry" 或 "manual"
+        "_mapi_base_url": "https://127.0.0.1:1102/civil",
+        "_mapi_key": "",
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -556,6 +585,43 @@ with st.sidebar:
 
     if st.session_state.api_key_configured:
         st.success("✅ AI 已就绪")
+
+    st.divider()
+
+    # ── MAPI 连接设置 ──────────────────────────────────────────────────────────
+    with st.expander("🔌 MIDAS 连接设置", expanded=False):
+        st.caption("选择 MIDAS API 的连接方式，影响 AI 生成代码中的配置方式")
+        mapi_mode = st.radio(
+            "连接方式",
+            ["registry", "manual"],
+            format_func=lambda x: "从注册表自动获取（需安装 MIDAS）" if x == "registry" else "手动输入 base_url 和 MAPI-Key",
+            key="mapi_mode_radio",
+            index=0 if st.session_state._mapi_mode == "registry" else 1,
+        )
+        st.session_state._mapi_mode = mapi_mode
+
+        if mapi_mode == "manual":
+            base_url = st.text_input(
+                "Base URL",
+                value=st.session_state._mapi_base_url,
+                placeholder="https://127.0.0.1:1102/civil",
+                key="mapi_base_url_input",
+            )
+            mapi_key = st.text_input(
+                "MAPI-Key",
+                type="password",
+                value=st.session_state._mapi_key,
+                placeholder="your-mapi-key-here",
+                key="mapi_key_input",
+            )
+            st.session_state._mapi_base_url = base_url
+            st.session_state._mapi_key = mapi_key
+            if base_url and mapi_key:
+                st.success("✅ 已配置手动连接信息，AI 将直接使用这些值生成代码")
+            else:
+                st.info("💡 填入 base_url 和 MAPI-Key 后，AI 生成的代码会跳过注册表读取")
+        else:
+            st.info("💡 AI 生成的代码将包含从 Windows 注册表自动获取配置的代码")
 
     st.divider()
 
@@ -784,6 +850,9 @@ with tab_ai:
                     retriever.format_endpoint_detail(ep) for ep, _ in results
                 )
 
+            # 构建 MAPI 连接配置信息，传给 LLM
+            mapi_config = _build_mapi_config()
+
             with st.chat_message("assistant"):
                 with st.spinner("🤔 AI 正在回答..."):
                     try:
@@ -792,6 +861,7 @@ with tab_ai:
                             user_query=query,
                             context_docs=context_docs,
                             chat_history=st.session_state.chat_history[:-1],
+                            mapi_config=mapi_config,
                         )
                         if results:
                             refs = "\n\n---\n**📚 参考接口**: "

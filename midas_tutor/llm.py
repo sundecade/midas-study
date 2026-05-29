@@ -69,23 +69,22 @@ mapi_key = "your-mapi-key-here"
   2. 已加载目标项目文件（.mcb）
   3. 注册表中 STARTUP 值须设为 1（启用 API 服务）
 
-### 标准代码模板（必须使用）
+### 代码模板选择规则（极其重要！）
+**每个对话回合开始时，先检查上下文中的"🔌 用户 MAPI 连接配置"部分：**
+- 如果用户提供了手动配置值 → 使用**模板A**（手动配置），**禁止写 import winreg 或注册表代码**
+- 如果用户未提供（注册表模式）→ 使用**模板B**（注册表），必须包含完整的 winreg 代码
+
+### 模板A：手动配置（用户已提供 base_url 和 mapi_key 时使用）
 ```python
 import requests
 import urllib3
-import winreg
 
 urllib3.disable_warnings()
 
-# --- 从注册表自动获取配置 ---
-reg_path = r"SOFTWARE\\MIDAS\\CVLwNX_CH\\CONNECTION"
-with winreg.OpenKey(winreg.HKEY_CURRENT_USER, reg_path) as key:
-    uri = winreg.QueryValueEx(key, "URI")[0]
-    port = winreg.QueryValueEx(key, "PORT")[0]
-    mapi_key = winreg.QueryValueEx(key, "Key")[0]
-base_url = f"https://{uri}:{port}/civil"
+# --- 手动配置（用户已提供，直接使用）---
+base_url = "用户提供的base_url"   # 严格使用上下文中的值
+mapi_key = "用户提供的mapi_key"   # 严格使用上下文中的值
 
-# --- API 调用函数 ---
 def MidasAPI(method, command, body=None):
     url = base_url + command
     headers = {
@@ -101,24 +100,23 @@ def MidasAPI(method, command, body=None):
     elif method == "DELETE":
         response = requests.delete(url, headers=headers, verify=False)
     return response.json()
-
-# --- 使用示例 ---
-# GET 查询节点
-result = MidasAPI("GET", "/db/NODE/1")
-# POST 创建节点
-result = MidasAPI("POST", "/db/NODE", {"Assign": {"1": {"X": 0, "Y": 0, "Z": 0}}})
 ```
 
-### 手动指定配置的模板
+### 模板B：注册表获取（用户未提供手动配置时使用）
 ```python
 import requests
 import urllib3
+import winreg
 
 urllib3.disable_warnings()
 
-# --- 手动配置 ---
-base_url = "https://127.0.0.1:1102/civil"  # 替换为实际地址
-mapi_key = "your-mapi-key-here"             # 替换为实际 Key
+# --- 从注册表自动获取配置 ---
+reg_path = r"SOFTWARE\\MIDAS\\CVLwNX_CH\\CONNECTION"
+with winreg.OpenKey(winreg.HKEY_CURRENT_USER, reg_path) as key:
+    uri = winreg.QueryValueEx(key, "URI")[0]
+    port = winreg.QueryValueEx(key, "PORT")[0]
+    mapi_key = winreg.QueryValueEx(key, "Key")[0]
+base_url = f"https://{uri}:{port}/civil"
 
 def MidasAPI(method, command, body=None):
     url = base_url + command
@@ -395,46 +393,63 @@ class LLMClient:
         )
         return response.choices[0].message.content
 
-    def chat_with_context(self, user_query, context_docs, chat_history=None):
+    def chat_with_context(self, user_query, context_docs, chat_history=None, mapi_config=""):
         """带知识库上下文的 RAG 聊天。"""
+        # 构建 MAPI 连接配置指令
+        mapi_section = ""
+        if mapi_config:
+            mapi_section = f"""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔌 用户 MAPI 连接配置（最高优先级）：
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{mapi_config}
+如果用户提供了手动配置值，代码中必须直接使用这些值，**绝对不要写 winreg 代码**。
+如果用户未提供（使用注册表模式），则必须包含完整的 winreg 注册表读取代码。
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"""
+
         context_msg = f"""以下是 MIDAS API 的精确文档。你必须严格按照文档中的 JSON 结构生成代码。
 
 {context_docs}
+{mapi_section}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🚨 生成代码时的强制规则（违反将导致 API 调用失败）：
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-0. 🚨 **DB端点的POST/PUT必须有三层嵌套**: {{"Assign": {{"1": {{实际数据}}}}}}
+0. 🔌 **先看上下文中是否有用户手动配置信息**：
+   - 如果上方有"🔌 用户 MAPI 连接配置"且提供了 base_url 和 mapi_key →
+     使用模板A（手动配置），**不写 import winreg**，直接用给定的值
+   - 如果没有（注册表模式）→ 使用模板B（注册表），完整写 winreg 代码
+1. 🚨 **DB端点的POST/PUT必须有三层嵌套**: {{"Assign": {{"1": {{实际数据}}}}}}
    正确: body = {{"Assign": {{"1": {{"FORCE": "kN", "DIST": "m", "HEAT": "kcal", "TEMPER": "C"}}}}}}
    错误: body = {{"FORCE": "kN", "DIST": "m"}}  ← 缺少 Assign 和数字键！
    错误: body = {{"Assign": {{"FORCE": "kN", "DIST": "m"}}}}  ← 缺少数字键 "1"！
    每个 DB 端点的 JSON 都必须从 Assign 的第1层开始，逐层嵌套到第3层数据。
-1. 先看文档中的「方法」字段，确认该接口支持哪些 HTTP 方法（GET/POST/PUT/DELETE）
+2. 先看文档中的「方法」字段，确认该接口支持哪些 HTTP 方法（GET/POST/PUT/DELETE）
    — 如果只列了 GET 和 PUT，绝对不能写 POST 代码！
    — 例如 /db/UNIT 只有 GET 和 PUT，只能用 GET 查询、PUT 修改
-2. 从「必须复制的 JSON 结构」中复制对应方法的模板
-3. 只把 <> 占位符替换为实际值
-4. 字段名一个字母都不能改，嵌套层级一个都不能动
-5. 不能添加或删除模板中的字段（模板是 {{}} 就发 {{}}, 不要加 FILE 等字段）
-6. 可选字段如果默认是空值（如 "" 或 0），就用空值，不要硬编内容
+3. 从「必须复制的 JSON 结构」中复制对应方法的模板
+4. 只把 <> 占位符替换为实际值
+5. 字段名一个字母都不能改，嵌套层级一个都不能动
+6. 不能添加或删除模板中的字段（模板是 {{}} 就发 {{}}, 不要加 FILE 等字段）
+7. 可选字段如果默认是空值（如 "" 或 0），就用空值，不要硬编内容
    — 例如 GROUP_NAME 默认是 Blank（空字符串），直接写 "" 即可
    — 例如 CODE 默认是空，直接写 "" 即可，不要编造成 "GB" 之类的值
-7. 不能根据字段描述猜测数据格式（如看到 DX,DY,DZ 就编一个对象）
-8. /db/UNIT 只有4个字段: FORCE, DIST, HEAT, TEMPER — 没有 LENGTH/ANGLE/MASS/TIME！
-9. POST/PUT 请求的 JSON body 如没有数据字段，发送 {{}} 即可，不要发 None 或省略 body
+8. 不能根据字段描述猜测数据格式（如看到 DX,DY,DZ 就编一个对象）
+9. /db/UNIT 只有4个字段: FORCE, DIST, HEAT, TEMPER — 没有 LENGTH/ANGLE/MASS/TIME！
+10. POST/PUT 请求的 JSON body 如没有数据字段，发送 {{}} 即可，不要发 None 或省略 body
    例: result = MidasAPI("POST", "/doc/NEW", {{}})  ← 必须传 {{}}，不能省略第3个参数！
    例: result = MidasAPI("POST", "/doc/NEW")  ← 错误！缺少 body 参数
-10. M1端点(路径含-M1)是Hyper-S求解器专用，字段结构与主端点完全不同！标准建模用主端点！
-11. 多个对象（多节点/多材料）必须放在独立的数字键下，不能堆在一个键里
-12. /db/SECT 的 vSIZE 数组：**高度(H)在前，宽度(B)在后**，只用截面实际需要的参数个数，不要补0！
+11. M1端点(路径含-M1)是Hyper-S求解器专用，字段结构与主端点完全不同！标准建模用主端点！
+12. 多个对象（多节点/多材料）必须放在独立的数字键下，不能堆在一个键里
+13. /db/SECT 的 vSIZE 数组：**高度(H)在前，宽度(B)在后**，只用截面实际需要的参数个数，不要补0！
     箱型(SHAPE="B") → 只用4个值: [H, B, tw, tf]
     ✅ 正确: vSIZE=[1.5, 3.0, 0.3, 0.3]
     ❌ 错误: vSIZE=[1.5, 3.0, 0.3, 0.3, 0, 0, 0, 0]  ← 多余0不要！
     不同SHAPE长度不同: 实心矩形(SB)=2, 实心圆(SR)=1。每个截面填它实际用到的参数个数即可。
-13. 每次生成新代码都必须包含完整的配置获取代码（import winreg, 打开注册表, 读取Key等）。
-    使用 `with winreg.OpenKey(...) as key:` 确保注册表句柄正确关闭。
-    绝对不要因为"之前已经配置过"而省略 import 和配置代码！
-14. 生成的代码中，winreg.OpenKey 必须使用 `with` 语句包裹，不要用裸 key = winreg.OpenKey(...)
+14. 注册表模式：每次生成代码必须包含完整 winreg 代码，使用 `with winreg.OpenKey(...) as key:`。
+    手动配置模式：直接使用用户提供的 base_url 和 mapi_key，不写 winreg。
+    无论哪种模式，都不能因为"之前配置过"而省略配置代码！
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 用户的建模需求通常涉及：材料(MATL)→截面(SECT)→节点(NODE)→单元(ELEM)→边界(CONS)→荷载(CNLD/BMLD)的流程。"""
 
