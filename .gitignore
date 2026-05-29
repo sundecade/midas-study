@@ -38,6 +38,9 @@ questions4.txt
 .venv/
 venv/
 
+# Distribution
+dist/
+
 # OS
 .DS_Store
 Thumbs.db

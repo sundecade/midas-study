@@ -4,10 +4,10 @@
 
 ## 系统要求
 
-- **Windows 10/11**（需读取注册表获取 MAPI-Key）
+- **Windows 10/11**（推荐）或 macOS/Linux
 - **Python 3.12**
-- **MIDAS Civil**（已安装并配置 MAPI-Key，软件运行时后台启动 HTTP 服务）
 - 4GB 内存，约 200MB 磁盘空间
+- MIDAS Civil（可选，如没有可在侧边栏手动输入 MAPI 连接信息）
 
 ## 快速开始
 
@@ -49,9 +49,11 @@ streamlit run app.py
 ## 前置条件
 
 使用前请确保：
-1. MIDAS Civil 已打开并完成 MAPI-Key 配置
-2. 注册表中 `HKEY_CURRENT_USER\SOFTWARE\MIDAS\CVLwNX_CH\CONNECTION` 路径下 STARTUP 值为 1
-3. 如使用 AI 功能，先在侧边栏配置后端和 API Key
+1. 已安装 Python 3.12
+2. 如需生成可运行的 MIDAS 代码，有两种方式：
+   - **自动获取**（本机已装 MIDAS）：确保 MIDAS Civil 已打开，注册表中 `HKEY_CURRENT_USER\SOFTWARE\MIDAS\CVLwNX_CH\CONNECTION` 路径下 STARTUP 值为 1
+   - **手动输入**（无需安装 MIDAS）：在侧边栏「🔌 MIDAS 连接设置」中手动填写 base_url 和 MAPI-Key
+3. 如使用 AI 功能，先在侧边栏配置 AI 后端和 API Key
 
 ## 命令行工具
 
@@ -82,13 +84,36 @@ midas-study/
 └── LEARNING_GUIDE.md           # 开发者学习指南
 ```
 
+## 分享给他人
+
+无需 GitHub，将项目打包成 zip 即可分享：
+
+```bash
+# 自动打包（排除 git 历史、临时文件、开发脚本）
+python pack_dist.py
+```
+
+打包后的文件在 `dist/midas-study-分享版.zip`（约 0.6 MB），可通过以下方式分享：
+
+| 方式 | 适用场景 |
+|------|----------|
+| 微信/QQ 直接发送 | 文件小，直接传 |
+| U盘/移动硬盘 | 离线分享 |
+| 局域网共享文件夹 | 办公室内部分享 |
+| 网盘链接 | 长期分享 |
+
+对方解压后双击 `midas_tutor/启动助手.bat` 即可使用（需先安装 Python 3.12）。
+
 ## 常见问题
 
 **Q: 搜索能用但 AI 助手不能用？**
 A: 需要在侧边栏配置 AI 后端。推荐先用免费的 Ollama 本地模型测试。
 
+**Q: 没有安装 MIDAS 能用吗？**
+A: 可以！在侧边栏「🔌 MIDAS 连接设置」中选择「手动输入」，填写远程 MIDAS 服务的地址和 Key 即可。搜索、浏览、AI 对话功能完全不受影响。
+
 **Q: AI 生成的代码运行报错？**
-A: 确保 MIDAS Civil 已打开，注册表中的 STARTUP=1，且 MAPI-Key 配置正确。
+A: 确保 MIDAS Civil 已打开，注册表中的 STARTUP=1，且 MAPI-Key 配置正确。如手动输入模式，确保 base_url 和 MAPI-Key 填写正确。
 
 **Q: 如何更新知识库？**
 A: 运行 `python rescrape.py` 从 MIDAS 官网重新抓取，然后运行 `python enhance_kb.py` 重新生成模板。
