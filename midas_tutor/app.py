@@ -536,16 +536,8 @@ with st.sidebar:
                 placeholder="https://api.openai.com/v1",
                 key="sidebar_custom_url",
             )
-            disable_thinking = st.checkbox(
-                "禁用深度思考（加速响应）",
-                value=st.session_state.get("_disable_thinking", True),
-                help="智谱 GLM-4.7 / DeepSeek-R1 等推理模型会先进行内部思考再输出，导致响应很慢。"
-                     "勾选此项可跳过思考阶段，大幅加速回复。",
-                key="sidebar_disable_thinking",
-            )
         else:
             custom_url = ""
-            disable_thinking = False
 
         col1, col2 = st.columns([1, 1])
         with col1:
@@ -554,16 +546,12 @@ with st.sidebar:
                     st.error("请输入 API Key")
                 else:
                     with st.spinner("连接中..."):
-                        extra_body = {}
-                        if disable_thinking:
-                            extra_body = {"thinking": {"type": "disabled"}}
                         client = LLMClient(
                             backend=selected_backend,
                             api_key=api_key,
                             base_url=custom_url,
                             model=model,
                             language=selected_lang,
-                            extra_body=extra_body,
                         )
                         ok, msg = client.test_connection()
                         if ok:
@@ -572,7 +560,6 @@ with st.sidebar:
                             st.session_state.api_key_configured = True
                             st.session_state._api_key = api_key
                             st.session_state._custom_url = custom_url
-                            st.session_state._disable_thinking = disable_thinking
                         else:
                             st.error(f"连接失败: {msg}")
 
