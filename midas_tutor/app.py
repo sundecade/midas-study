@@ -536,8 +536,15 @@ with st.sidebar:
                 placeholder="https://api.openai.com/v1",
                 key="sidebar_custom_url",
             )
+            disable_thinking = st.checkbox(
+                "禁用深度思考（加速响应）",
+                value=st.session_state.get("_disable_thinking", True),
+                help="智谱 GLM-4.7 / DeepSeek-R1 等推理模型会先内部思考再输出，响应很慢。勾选可跳过思考阶段。",
+                key="sidebar_disable_thinking",
+            )
         else:
             custom_url = ""
+            disable_thinking = False
 
         col1, col2 = st.columns([1, 1])
         with col1:
@@ -546,12 +553,16 @@ with st.sidebar:
                     st.error("请输入 API Key")
                 else:
                     with st.spinner("连接中..."):
+                        extra_body = {}
+                        if disable_thinking:
+                            extra_body = {"thinking": {"type": "disabled"}}
                         client = LLMClient(
                             backend=selected_backend,
                             api_key=api_key,
                             base_url=custom_url,
                             model=model,
                             language=selected_lang,
+                            extra_body=extra_body,
                         )
                         ok, msg = client.test_connection()
                         if ok:
@@ -560,6 +571,7 @@ with st.sidebar:
                             st.session_state.api_key_configured = True
                             st.session_state._api_key = api_key
                             st.session_state._custom_url = custom_url
+                            st.session_state._disable_thinking = disable_thinking
                         else:
                             st.error(f"连接失败: {msg}")
 
@@ -854,23 +866,24 @@ with tab_ai:
             mapi_config = _build_mapi_config()
 
             with st.chat_message("assistant"):
-                with st.spinner("🤔 AI 正在回答..."):
-                    try:
-                        client = st.session_state.llm_client
-                        answer = client.chat_with_context(
-                            user_query=query,
-                            context_docs=context_docs,
-                            chat_history=st.session_state.chat_history[:-1],
-                            mapi_config=mapi_config,
-                        )
-                        if results:
-                            refs = "\n\n---\n**📚 参考接口**: "
-                            refs += " · ".join(f"`{ep['path']}`" for ep, _ in results[:5])
-                            answer += refs
-                        st.markdown(answer)
-                        st.session_state.chat_history.append({"role": "assistant", "content": answer})
-                    except Exception as e:
-                        st.error(f"回答失败: {e}")
+                try:
+                    client = st.session_state.llm_client
+                    stream = client.chat_with_context(
+                        user_query=query,
+                        context_docs=context_docs,
+                        chat_history=st.session_state.chat_history[:-1],
+                        mapi_config=mapi_config,
+                        stream=True,
+                    )
+                    answer = st.write_stream(stream)
+                    if results:
+                        refs = "\n\n---\n**📚 参考接口**: "
+                        refs += " · ".join(f"`{ep['path']}`" for ep, _ in results[:5])
+                        st.markdown(refs)
+                        answer += refs
+                    st.session_state.chat_history.append({"role": "assistant", "content": answer})
+                except Exception as e:
+                    st.error(f"回答失败: {e}")
 
         # 对最后一条助手消息，如果包含代码则显示操作按钮（独立于输入处理，确保按钮持久显示）
         if st.session_state.chat_history:

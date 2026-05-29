@@ -226,9 +226,10 @@ POST /doc/NEW 必须发送空对象 {{}} 作为 body，不能省略！
 
 **/db/CONS 正确示例（多个节点时每个节点用独立键）：**
 ```json
-{{"Assign": {{"1": {{"ITEMS": [{{"ID": 1, "GROUP_NAME": "", "CONSTRAINT": "1111110"}}]}}, "2": {{"ITEMS": [{{"ID": 11, "GROUP_NAME": "", "CONSTRAINT": "0110000"}}]}}}}}}
+{{"Assign": {{"1": {{"ITEMS": [{{"ID": 1, "GROUP_NAME": "", "CONSTRAINT": "1111110"}}]}}, "11": {{"ITEMS": [{{"ID": 2, "GROUP_NAME": "", "CONSTRAINT": "0110000"}}]}}}}}}
 ```
 CONSTRAINT 是 7 位字符串。GROUP_NAME 空字符串即可。**多个节点必须分开在不同的数字键下，不要全部放到一个 ITEMS 数组里。**
+	🚨 Assign 下的数字键才是节点号（Assign["11"]=给11号节点加约束），ITEMS 内的 ID 是内部序号，不是节点号！
 
 回答规则：
 1. 默认使用中文回答。所有解释、注释、说明都必须用中文。
@@ -354,13 +355,14 @@ FREE_MODELS = {
 class LLMClient:
     """多后端 LLM 客户端。"""
 
-    def __init__(self, backend="deepseek", api_key="", base_url="", model="", language="zh"):
+    def __init__(self, backend="deepseek", api_key="", base_url="", model="", language="zh", extra_body=None):
         backend_config = FREE_MODELS.get(backend, FREE_MODELS["deepseek"])
         self.backend = backend
         self.api_key = api_key or "ollama"
         self.base_url = (base_url or backend_config["base_url"]).rstrip("/")
         self.model = model or backend_config["default_model"]
         self.language = language
+        self.extra_body = extra_body or {}
         # 复用 client 实例，避免每次 chat 都创建新连接
         try:
             from openai import OpenAI
@@ -380,20 +382,19 @@ class LLMClient:
             raise ImportError("请先安装 openai: pip install openai")
 
         full_messages = [{"role": "system", "content": self._get_system_prompt()}] + messages
+        kwargs = dict(model=self.model, messages=full_messages, temperature=temperature, max_tokens=8192)
+        if self.extra_body:
+            kwargs["extra_body"] = self.extra_body
 
         if stream:
-            return self._client.chat.completions.create(
-                model=self.model, messages=full_messages,
-                stream=True, temperature=temperature, max_tokens=4096,
-            )
+            kwargs["stream"] = True
+            kwargs["max_tokens"] = 4096
+            return self._client.chat.completions.create(**kwargs)
 
-        response = self._client.chat.completions.create(
-            model=self.model, messages=full_messages,
-            temperature=temperature, max_tokens=8192,
-        )
+        response = self._client.chat.completions.create(**kwargs)
         return response.choices[0].message.content
 
-    def chat_with_context(self, user_query, context_docs, chat_history=None, mapi_config=""):
+    def chat_with_context(self, user_query, context_docs, chat_history=None, mapi_config="", stream=False):
         """带知识库上下文的 RAG 聊天。"""
         # 构建 MAPI 连接配置指令
         mapi_section = ""
@@ -442,6 +443,7 @@ class LLMClient:
    例: result = MidasAPI("POST", "/doc/NEW")  ← 错误！缺少 body 参数
 11. M1端点(路径含-M1)是Hyper-S求解器专用，字段结构与主端点完全不同！标准建模用主端点！
 12. 多个对象（多节点/多材料）必须放在独立的数字键下，不能堆在一个键里
+    Assign 下的数字键才是节点号（Assign["11"]=给11号节点加约束），ITEMS 内的 ID 只是内部序号
 13. /db/SECT 的 vSIZE 数组：**高度(H)在前，宽度(B)在后**，只用截面实际需要的参数个数，不要补0！
     箱型(SHAPE="B") → 只用4个值: [H, B, tw, tf]
     ✅ 正确: vSIZE=[1.5, 3.0, 0.3, 0.3]
@@ -457,7 +459,21 @@ class LLMClient:
         messages.append({"role": "system", "content": context_msg})
         messages.append({"role": "user", "content": user_query})
 
+        if stream:
+            return self._chat_stream(messages)
         return self.chat(messages)
+
+    def _chat_stream(self, messages):
+        """流式聊天，逐块返回文本。"""
+        full_messages = [{"role": "system", "content": self._get_system_prompt()}] + messages
+        kwargs = dict(model=self.model, messages=full_messages, stream=True, temperature=0.3, max_tokens=4096)
+        if self.extra_body:
+            kwargs["extra_body"] = self.extra_body
+        response = self._client.chat.completions.create(**kwargs)
+        for chunk in response:
+            delta = chunk.choices[0].delta
+            if delta.content:
+                yield delta.content
 
     def test_connection(self):
         """测试连接。"""
