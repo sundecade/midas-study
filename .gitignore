@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.tmp
+
+# Runtime cache / progress files
+scraper_progress.json
+rescrape_progress.json
+midas_api_knowledge_base_backup.json
+
+# IDE / Editor
+.obsidian/
+.claude/
+.vscode/
+.idea/
+
+# User generated / saved code
+code_examples/user_saved/
+midas_tutor/user_saved/
+
+# Scratch / temp files
+midas_tutor/1.py
+midas_tutor/flase_case.py
+midas_tutor/true_case.py
+qusetion.py
+
+# User notes
+q5.txt
+q6.txt
+question.txt
+question2.txt
+question3.txt
+questions4.txt
+
+# Environment
+.env
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
