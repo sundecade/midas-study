@@ -875,7 +875,13 @@ with tab_ai:
                         mapi_config=mapi_config,
                         stream=True,
                     )
-                    answer = st.write_stream(stream)
+                    with st.spinner("🤔 AI 正在分析需求，生成回答..."):
+                        import itertools
+                        first = next(stream, None)
+                    if first is None:
+                        answer = ""
+                    else:
+                        answer = st.write_stream(itertools.chain([first], stream))
                     if results:
                         refs = "\n\n---\n**📚 参考接口**: "
                         refs += " · ".join(f"`{ep['path']}`" for ep, _ in results[:5])
