@@ -230,18 +230,18 @@ def _save_code_to_examples(code, filename=None):
 
 def _extract_code_from_answer(answer):
     """从 AI 回答中提取 Python 代码块。"""
-    if "```python" in answer:
-        parts = answer.split("```python")
-        if len(parts) > 1:
-            code = parts[1].split("```")[0]
-            if code.strip():
-                return code.strip()
-    elif "```" in answer:
-        parts = answer.split("```")
-        for i in range(1, len(parts), 2):
-            code = parts[i].strip()
-            if code and ("import " in code or "def " in code or "=" in code):
-                return code
+    import re
+    # 提取所有 ```python ... ``` 代码块
+    py_blocks = re.findall(r'```python\s*\n(.*?)```', answer, re.DOTALL)
+    if py_blocks:
+        # 返回最长的那个代码块（真正的代码，不是简短示例）
+        return max(py_blocks, key=len).strip()
+    # 回退：提取所有 ``` ... ``` 代码块
+    generic_blocks = re.findall(r'```\s*\n(.*?)```', answer, re.DOTALL)
+    for block in sorted(generic_blocks, key=len, reverse=True):
+        code = block.strip()
+        if code and ("import " in code or "def " in code or "=" in code or "MidasAPI" in code):
+            return code
     return None
 
 
@@ -876,11 +876,13 @@ with tab_ai:
                             chat_history=st.session_state.chat_history[:-1],
                             mapi_config=mapi_config,
                         )
+                        display = answer
                         if results:
                             refs = "\n\n---\n**📚 参考接口**: "
                             refs += " · ".join(f"`{ep['path']}`" for ep, _ in results[:5])
-                            answer += refs
-                        st.markdown(answer)
+                            display = answer + refs
+                        st.markdown(display)
+                        # 只保存纯净回答到历史，避免参考信息污染后续对话
                         st.session_state.chat_history.append({"role": "assistant", "content": answer})
                     except Exception as e:
                         st.error(f"回答失败: {e}")
