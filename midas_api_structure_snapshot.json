@@ -1,0 +1,1838 @@
+{
+  "source": "https://support.midasuser.com/hc/en-us/articles/33016922742937-MIDAS-API-Online-Manual",
+  "generated_from": "midas_api_knowledge_base.json structure",
+  "structure": {
+    "DOC": {
+      "subsections": {},
+      "endpoints": [
+        {
+          "name": "New Project",
+          "endpoint": "/doc/NEW",
+          "article_id": 35994078198681
+        },
+        {
+          "name": "Open Project",
+          "endpoint": "/doc/OPEN",
+          "article_id": 35994112560793
+        },
+        {
+          "name": "Close Project",
+          "endpoint": "/doc/CLOSE",
+          "article_id": 35994162529305
+        },
+        {
+          "name": "Save",
+          "endpoint": "/doc/SAVE",
+          "article_id": 35994210207513
+        },
+        {
+          "name": "Save As",
+          "endpoint": "/doc/SAVEAS",
+          "article_id": 35994277012377
+        },
+        {
+          "name": "Save Current Stage As",
+          "endpoint": "/doc/STAGAS",
+          "article_id": 50707525717401
+        },
+        {
+          "name": "Import to Json",
+          "endpoint": "/doc/IMPORT",
+          "article_id": 35994338816793
+        },
+        {
+          "name": "Import to mct/mgt",
+          "endpoint": "/doc/IMPORTMXT",
+          "article_id": 35994365225113
+        },
+        {
+          "name": "Export to Json",
+          "endpoint": "/doc/EXPORT",
+          "article_id": 35994422273305
+        },
+        {
+          "name": "Export to mct/mgt",
+          "endpoint": "/doc/EXPORTMXT",
+          "article_id": 35994462805017
+        },
+        {
+          "name": "Perform Analysis",
+          "endpoint": "/doc/ANAL",
+          "article_id": 35685160815897
+        }
+      ]
+    },
+    "DB": {
+      "subsections": {
+        "Project": [
+          {
+            "name": "Project Information",
+            "endpoint": "/db/PJCF",
+            "article_id": 35801869341337
+          },
+          {
+            "name": "Unit System",
+            "endpoint": "/db/UNIT",
+            "article_id": 35802155483801
+          },
+          {
+            "name": "Structure Type",
+            "endpoint": "/db/STYP",
+            "article_id": 35802404495257
+          },
+          {
+            "name": "Structure Type",
+            "endpoint": "/db/STYP-M1ᴴˢ⁾",
+            "article_id": 56375311138201
+          },
+          {
+            "name": "Structure Group",
+            "endpoint": "/db/GRUP",
+            "article_id": 35802441712921
+          },
+          {
+            "name": "Boundary Group",
+            "endpoint": "/db/BNGR",
+            "article_id": 35804937452313
+          },
+          {
+            "name": "Load Group",
+            "endpoint": "/db/LDGR",
+            "article_id": 35804975346841
+          },
+          {
+            "name": "Tendon Group",
+            "endpoint": "/db/TDGR",
+            "article_id": 35805198736793
+          }
+        ],
+        "View": [
+          {
+            "name": "Named Plane",
+            "endpoint": "/db/NPLN",
+            "article_id": 35805287066649
+          },
+          {
+            "name": "Material Color",
+            "endpoint": "/db/CO_M",
+            "article_id": 35805703171353
+          },
+          {
+            "name": "Section Color",
+            "endpoint": "/db/CO_S",
+            "article_id": 35805763514393
+          },
+          {
+            "name": "Thickness Color",
+            "endpoint": "/db/CO_T",
+            "article_id": 35805833925785
+          },
+          {
+            "name": "Floor Load Color",
+            "endpoint": "/db/CO_F",
+            "article_id": 35805846236441
+          }
+        ],
+        "Structure": [
+          {
+            "name": "Span Information",
+            "endpoint": "/db/SPAN",
+            "article_id": 35805957502233
+          },
+          {
+            "name": "Story Data",
+            "endpoint": "/db/STOR",
+            "article_id": 49513466793113
+          }
+        ],
+        "Node/Element": [
+          {
+            "name": "Node",
+            "endpoint": "/db/NODE",
+            "article_id": 35806845654169
+          },
+          {
+            "name": "Element",
+            "endpoint": "/db/ELEM",
+            "article_id": 35806934300825
+          },
+          {
+            "name": "Node Local Axis",
+            "endpoint": "/db/SKEW",
+            "article_id": 35807178748569
+          },
+          {
+            "name": "Define Domain",
+            "endpoint": "/db/MADO",
+            "article_id": 35807228332825
+          },
+          {
+            "name": "Define Sub-Domain",
+            "endpoint": "/db/SBDO",
+            "article_id": 35807304820761
+          },
+          {
+            "name": "Domain-Element",
+            "endpoint": "/db/DOEL",
+            "article_id": 35807341514393
+          }
+        ],
+        "Properties": [
+          {
+            "name": "Material Properties",
+            "endpoint": "/db/MATL",
+            "article_id": 35807411331993
+          },
+          {
+            "name": "Material Properties",
+            "endpoint": "/db/MATL-M1ᴴˢ⁾",
+            "article_id": 56396523438873
+          },
+          {
+            "name": "Inelastic Material Properties for Fiber Model",
+            "endpoint": "/db/IMFM",
+            "article_id": 35807475893401
+          },
+          {
+            "name": "Inelastic Material Link for Auto Generation",
+            "endpoint": "/db/IMFM-M1ᴴˢ⁾",
+            "article_id": 56375076523929
+          },
+          {
+            "name": "Time Dependent Material Properties - User Defined",
+            "endpoint": "/db/TDMF",
+            "article_id": 35807665049369
+          },
+          {
+            "name": "Time Dependent Material Properties - Creep/Shrinkage",
+            "endpoint": "/db/TDMT",
+            "article_id": 35808006330009
+          },
+          {
+            "name": "Time Dependent Material Properties - Compressive Strength",
+            "endpoint": "/db/TDME",
+            "article_id": 35808102389401
+          },
+          {
+            "name": "Change Property",
+            "endpoint": "/db/EDMP",
+            "article_id": 35808245801881
+          },
+          {
+            "name": "Time Dependent Material Link",
+            "endpoint": "/db/TMAT",
+            "article_id": 35808280891033
+          },
+          {
+            "name": "Plastic Material",
+            "endpoint": "/db/EPMT",
+            "article_id": 35808376517913
+          },
+          {
+            "name": "Plastic Material",
+            "endpoint": "/db/EPMT-M1ᴴˢ⁾",
+            "article_id": 56511025581337
+          },
+          {
+            "name": "Section Properties - Common",
+            "endpoint": "/db/SECT",
+            "article_id": 35808653964185
+          },
+          {
+            "name": "Thickness - Value",
+            "endpoint": "/db/THIK",
+            "article_id": 35942236652697
+          },
+          {
+            "name": "Tapered Group",
+            "endpoint": "/db/TSGR",
+            "article_id": 35942955627673
+          },
+          {
+            "name": "Section Manager - Stiffness",
+            "endpoint": "/db/SECF",
+            "article_id": 35943174833177
+          },
+          {
+            "name": "Section Manager - Reinforcements",
+            "endpoint": "/db/RPSC",
+            "article_id": 35943227821465
+          },
+          {
+            "name": "Section Manager - Stress Points",
+            "endpoint": "/db/STRPSSM",
+            "article_id": 35943448721177
+          },
+          {
+            "name": "Section Manager - Plate Stiffness Scale Factor",
+            "endpoint": "/db/PSSF",
+            "article_id": 35943557337753
+          },
+          {
+            "name": "Section Manager - Section for Resultant Forces - Virtual Beam",
+            "endpoint": "/db/VBEM",
+            "article_id": 35943802727065
+          },
+          {
+            "name": "Section Manager - Section for Resultant Forces - Virtual Section",
+            "endpoint": "/db/VSEC",
+            "article_id": 35943859944729
+          },
+          {
+            "name": "Effective Width Scale Factor",
+            "endpoint": "/db/EWSF",
+            "article_id": 35943954272281
+          },
+          {
+            "name": "Inelastic Hinge Control Data",
+            "endpoint": "/db/IEHC",
+            "article_id": 35944093809689
+          },
+          {
+            "name": "Assign Inelastic Hinge Properties",
+            "endpoint": "/db/IEHG",
+            "article_id": 35944228031001
+          },
+          {
+            "name": "Assign Inelastic Hinges - Beam",
+            "endpoint": "/db/IEHG-BEAM-M1ᴴˢ⁾",
+            "article_id": 57656773423385
+          },
+          {
+            "name": "Assign Inelastic Hinges - Truss",
+            "endpoint": "/db/IEHG-TRUSS-M1ᴴˢ⁾",
+            "article_id": 57656796689177
+          },
+          {
+            "name": "Assign Inelastic Hinges - General Link",
+            "endpoint": "/db/IEHG-GL-M1ᴴˢ⁾",
+            "article_id": 57656799110937
+          },
+          {
+            "name": "Assign Inelastic Hinges - Point Spring Support",
+            "endpoint": "/db/IEHG-PSS-M1ᴴˢ⁾",
+            "article_id": 57656826629657
+          },
+          {
+            "name": "Inelastic Material Properties",
+            "endpoint": "/db/FIMP",
+            "article_id": 35944335180569
+          },
+          {
+            "name": "Fiber Division of Section",
+            "endpoint": "/db/FIBR",
+            "article_id": 35944476555801
+          },
+          {
+            "name": "Group Damping",
+            "endpoint": "/db/GRDP",
+            "article_id": 35944577940633
+          },
+          {
+            "name": "Element Stiffness Scale Factor",
+            "endpoint": "/db/ESSF",
+            "article_id": 44613910309401
+          }
+        ],
+        "Boundary": [
+          {
+            "name": "Constraint Support",
+            "endpoint": "/db/CONS",
+            "article_id": 35944759597337
+          },
+          {
+            "name": "Point Spring",
+            "endpoint": "/db/NSPR",
+            "article_id": 35945908301081
+          },
+          {
+            "name": "Define General Spring Type",
+            "endpoint": "/db/GSTP",
+            "article_id": 35946004118169
+          },
+          {
+            "name": "Assign General Spring Supports",
+            "endpoint": "/db/GSPR",
+            "article_id": 35946151002393
+          },
+          {
+            "name": "Surface Spring",
+            "endpoint": "/db/SSPS",
+            "article_id": 35946218805785
+          },
+          {
+            "name": "Elastic Link",
+            "endpoint": "/db/ELNK",
+            "article_id": 35946439146649
+          },
+          {
+            "name": "Rigid Link",
+            "endpoint": "/db/RIGD",
+            "article_id": 35946584247193
+          },
+          {
+            "name": "General Link Properties",
+            "endpoint": "/db/NLLP",
+            "article_id": 35946764618905
+          },
+          {
+            "name": "General Link",
+            "endpoint": "/db/NLNK",
+            "article_id": 35946942651289
+          },
+          {
+            "name": "General Link",
+            "endpoint": "/db/NLNK-M1ᴴˢ⁾",
+            "article_id": 56511465190937
+          },
+          {
+            "name": "Change General Link Property",
+            "endpoint": "/db/CGLP",
+            "article_id": 35947087784217
+          },
+          {
+            "name": "Beam End Release",
+            "endpoint": "/db/FRLS",
+            "article_id": 35947184258585
+          },
+          {
+            "name": "Beam End Offsets",
+            "endpoint": "/db/OFFS",
+            "article_id": 35947465569049
+          },
+          {
+            "name": "Plate End Release",
+            "endpoint": "/db/PRLS",
+            "article_id": 35947668757017
+          },
+          {
+            "name": "Force-Deformation Function",
+            "endpoint": "/db/MLFC",
+            "article_id": 35947795463705
+          },
+          {
+            "name": "Seismic Device - Viscous Damper/Oil Damper",
+            "endpoint": "/db/SDVI",
+            "article_id": 35947995586713
+          },
+          {
+            "name": "Seismic Device - Viscoelastic Damper",
+            "endpoint": "/db/SDVE",
+            "article_id": 35948062417049
+          },
+          {
+            "name": "Seismic Device - Steel Damper",
+            "endpoint": "/db/SDST",
+            "article_id": 35948150053529
+          },
+          {
+            "name": "Seismic Device - Hysteretic Isolator(MSS)",
+            "endpoint": "/db/SDHY",
+            "article_id": 35948292269977
+          },
+          {
+            "name": "Seismic Device - Isolator(MSS)",
+            "endpoint": "/db/SDIS",
+            "article_id": 35948330042649
+          },
+          {
+            "name": "Linear Constraints",
+            "endpoint": "/db/MCON",
+            "article_id": 35948507217689
+          },
+          {
+            "name": "Panel Zone Effects",
+            "endpoint": "/db/PZEF",
+            "article_id": 35950231812505
+          },
+          {
+            "name": "Define Constraints Label Direction",
+            "endpoint": "/db/CLDR",
+            "article_id": 35952465579417
+          },
+          {
+            "name": "Diaphragm Disconnect",
+            "endpoint": "/db/DRLS",
+            "article_id": 51740138178969
+          }
+        ],
+        "Static Loads": [
+          {
+            "name": "Static Load Cases",
+            "endpoint": "/db/STLD",
+            "article_id": 35952651947801
+          },
+          {
+            "name": "Self-Weight",
+            "endpoint": "/db/BODF",
+            "article_id": 35952708909337
+          },
+          {
+            "name": "Nodal Loads",
+            "endpoint": "/db/CNLD",
+            "article_id": 35952812160281
+          },
+          {
+            "name": "Beam Loads",
+            "endpoint": "/db/BMLD",
+            "article_id": 35952826746521
+          },
+          {
+            "name": "Specified Displacements of Support",
+            "endpoint": "/db/SDSP",
+            "article_id": 35952933108761
+          },
+          {
+            "name": "Nodal Masses",
+            "endpoint": "/db/NMAS",
+            "article_id": 35952994344985
+          },
+          {
+            "name": "Loads to Masses",
+            "endpoint": "/db/LTOM",
+            "article_id": 35953062761881
+          },
+          {
+            "name": "Nodal Body Force",
+            "endpoint": "/db/NBOF",
+            "article_id": 35953117115545
+          },
+          {
+            "name": "Define Pressure Load Type",
+            "endpoint": "/db/PSLT",
+            "article_id": 35953165879833
+          },
+          {
+            "name": "Assign Pressure Loads",
+            "endpoint": "/db/PRES",
+            "article_id": 35953322434457
+          },
+          {
+            "name": "Define Plane Load Type",
+            "endpoint": "/db/PNLD",
+            "article_id": 35953492119321
+          },
+          {
+            "name": "Assign Plane Loads",
+            "endpoint": "/db/PNLA",
+            "article_id": 35953557411993
+          },
+          {
+            "name": "Define Floor Load Type",
+            "endpoint": "/db/FBLD",
+            "article_id": 35953604106137
+          },
+          {
+            "name": "Assign Floor Loads",
+            "endpoint": "/db/FBLA",
+            "article_id": 35953653792665
+          },
+          {
+            "name": "Finishing Material Loads",
+            "endpoint": "/db/FMLD",
+            "article_id": 35953690148121
+          },
+          {
+            "name": "Parameter of Soil Properties",
+            "endpoint": "/db/POSP",
+            "article_id": 49510865840537
+          },
+          {
+            "name": "Static Earth Pressure",
+            "endpoint": "/db/EPST",
+            "article_id": 49511059178521
+          },
+          {
+            "name": "Seismic Earth Pressure",
+            "endpoint": "/db/EPSE",
+            "article_id": 49511153905177
+          },
+          {
+            "name": "Parameter of Seismic Loads",
+            "endpoint": "/db/POSL",
+            "article_id": 49511410691609
+          }
+        ],
+        "Temperature Loads": [
+          {
+            "name": "Element Temperature",
+            "endpoint": "/db/ETMP",
+            "article_id": 35954097233561
+          },
+          {
+            "name": "Temperature Gradient",
+            "endpoint": "/db/GTMP",
+            "article_id": 35954163821593
+          },
+          {
+            "name": "Beam Section Temperature",
+            "endpoint": "/db/BTMP",
+            "article_id": 35954186047897
+          },
+          {
+            "name": "System Temperature",
+            "endpoint": "/db/STMP",
+            "article_id": 35954219102233
+          },
+          {
+            "name": "Nodal Temperature",
+            "endpoint": "/db/NTMP",
+            "article_id": 35954302641177
+          }
+        ],
+        "Prestress Loads": [
+          {
+            "name": "Tendon Property",
+            "endpoint": "/db/TDNT",
+            "article_id": 35954451663513
+          },
+          {
+            "name": "Tendon Profile",
+            "endpoint": "/db/TDNA",
+            "article_id": 35954555962137
+          },
+          {
+            "name": "Tendon Location for Composite Section",
+            "endpoint": "/db/TDCS",
+            "article_id": 35954649371545
+          },
+          {
+            "name": "Tendon Prestress",
+            "endpoint": "/db/TDPL",
+            "article_id": 35954702397209
+          },
+          {
+            "name": "Prestress Beam Loads",
+            "endpoint": "/db/PRST",
+            "article_id": 35954744402713
+          },
+          {
+            "name": "Pretension Loads",
+            "endpoint": "/db/PTNS",
+            "article_id": 35954793469593
+          },
+          {
+            "name": "External Type Load Case for Pretension",
+            "endpoint": "/db/EXLD",
+            "article_id": 35954841849753
+          }
+        ],
+        "Moving Loads": [
+          {
+            "name": "Moving Load Code",
+            "endpoint": "/db/MVCD",
+            "article_id": 35955076795929
+          },
+          {
+            "name": "Traffic Line Lanes",
+            "endpoint": "/db/LLAN",
+            "article_id": 35955170613273
+          },
+          {
+            "name": "Traffic Line Lanes - China",
+            "endpoint": "/db/LLANch",
+            "article_id": 35955208713241
+          },
+          {
+            "name": "Traffic Line Lanes - India",
+            "endpoint": "/db/LLANid",
+            "article_id": 35955251576089
+          },
+          {
+            "name": "Traffic Line Lanes - Transverse",
+            "endpoint": "/db/LLANtr",
+            "article_id": 35955355080217
+          },
+          {
+            "name": "Traffic Line Lanes - Moving Load Optimizaion",
+            "endpoint": "/db/LLANop",
+            "article_id": 35955410961689
+          },
+          {
+            "name": "Traffic Surface Lanes",
+            "endpoint": "/db/SLAN",
+            "article_id": 35956862556313
+          },
+          {
+            "name": "Traffic Surface Lanes - China",
+            "endpoint": "/db/SLANch",
+            "article_id": 35956917206425
+          },
+          {
+            "name": "Traffic Surface Lanes - Moving Load Optimization",
+            "endpoint": "/db/SLANop",
+            "article_id": 35956982840473
+          },
+          {
+            "name": "Vehicles - AASHTO Standard",
+            "endpoint": "/db/MVHL",
+            "article_id": 35957125531545
+          },
+          {
+            "name": "Vehicles - Transverse",
+            "endpoint": "/db/MVHLtr",
+            "article_id": 35958910039321
+          },
+          {
+            "name": "Moving Load Cases",
+            "endpoint": "/db/MVLD",
+            "article_id": 35959068573209
+          },
+          {
+            "name": "Moving Load Cases - China",
+            "endpoint": "/db/MVLDch",
+            "article_id": 35960417354649
+          },
+          {
+            "name": "Moving Load Cases - India",
+            "endpoint": "/db/MVLDid",
+            "article_id": 35961164029593
+          },
+          {
+            "name": "Moving Load Cases - BS",
+            "endpoint": "/db/MVLDbs",
+            "article_id": 35961459443737
+          },
+          {
+            "name": "Moving Load Cases - Eurocode",
+            "endpoint": "/db/MVLDeu",
+            "article_id": 35961579883929
+          },
+          {
+            "name": "Moving Load Cases - Poland",
+            "endpoint": "/db/MVLDpl",
+            "article_id": 35961922701209
+          },
+          {
+            "name": "Moving Load Cases - Transverse",
+            "endpoint": "/db/MVLDtr",
+            "article_id": 35961950207129
+          },
+          {
+            "name": "Concurrent Reaction Group",
+            "endpoint": "/db/CRGR",
+            "article_id": 35962261902745
+          },
+          {
+            "name": "Concurrent Joint Force Group",
+            "endpoint": "/db/CJFG",
+            "article_id": 35962376351769
+          },
+          {
+            "name": "Vehicle Classes",
+            "endpoint": "/db/MVHC",
+            "article_id": 35962463156761
+          },
+          {
+            "name": "Plate Element for Influence Surface",
+            "endpoint": "/db/SINF",
+            "article_id": 35962659347481
+          },
+          {
+            "name": "Lane Support - Negative Moments at Interior Piers",
+            "endpoint": "/db/MLSP",
+            "article_id": 35962967211545
+          },
+          {
+            "name": "Lane Support - Reactions at Interior Piers",
+            "endpoint": "/db/MLSR",
+            "article_id": 35963167875225
+          },
+          {
+            "name": "Dynamic Load Allowance",
+            "endpoint": "/db/DYLA",
+            "article_id": 35963288573849
+          },
+          {
+            "name": "Additional Impact Factor",
+            "endpoint": "/db/IMPF",
+            "article_id": 35963359844889
+          },
+          {
+            "name": "Railway Dynamic Factor",
+            "endpoint": "/db/DYFG",
+            "article_id": 35963474883097
+          },
+          {
+            "name": "Railway Dynamic Factor by Element",
+            "endpoint": "/db/DYNF",
+            "article_id": 35963520535577
+          }
+        ],
+        "Dynamic Loads": [
+          {
+            "name": "Response Spectrum Functions - User Type",
+            "endpoint": "/db/SPFC",
+            "article_id": 35963686253593
+          },
+          {
+            "name": "Response Spectrum Load Cases",
+            "endpoint": "/db/SPLC",
+            "article_id": 35963719599641
+          },
+          {
+            "name": "Time History Global Control",
+            "endpoint": "/db/THGC",
+            "article_id": 35963819140505
+          },
+          {
+            "name": "Time History Global Control",
+            "endpoint": "/db/THGC-M1ᴴˢ⁾",
+            "article_id": 56510942223513
+          },
+          {
+            "name": "Time History Output Option",
+            "endpoint": "/db/THOO-M1ᴴˢ⁾",
+            "article_id": 56371398681241
+          },
+          {
+            "name": "Time History Load Cases",
+            "endpoint": "/db/THIS",
+            "article_id": 35963903917593
+          },
+          {
+            "name": "Time History Load Cases",
+            "endpoint": "/db/THIS-M1ᴴˢ⁾",
+            "article_id": 56538335819673
+          },
+          {
+            "name": "Time History Functions",
+            "endpoint": "/db/THFC",
+            "article_id": 35964507702937
+          },
+          {
+            "name": "Ground Acceleration",
+            "endpoint": "/db/THGA",
+            "article_id": 35964590740633
+          },
+          {
+            "name": "Dynamic Nodal Loads",
+            "endpoint": "/db/THNL",
+            "article_id": 35964586306841
+          },
+          {
+            "name": "Time Varying Static Loads",
+            "endpoint": "/db/THSL",
+            "article_id": 35964656837785
+          },
+          {
+            "name": "Multiple Support Excitation",
+            "endpoint": "/db/THMS",
+            "article_id": 35964708397081
+          }
+        ],
+        "Construction Stage Loads": [
+          {
+            "name": "Define Construction Stage",
+            "endpoint": "/db/STAG",
+            "article_id": 35987578396697
+          },
+          {
+            "name": "Composite Section for Construction Stage",
+            "endpoint": "/db/CSCS",
+            "article_id": 35987625234201
+          },
+          {
+            "name": "Time Loads for Construction Stage",
+            "endpoint": "/db/TMLD",
+            "article_id": 35987743311385
+          },
+          {
+            "name": "Set-Back Loads for Nonlinear Construction Stage",
+            "endpoint": "/db/STBK",
+            "article_id": 35987833076505
+          },
+          {
+            "name": "Camber for Construction Stage",
+            "endpoint": "/db/CMCS",
+            "article_id": 35987807611161
+          },
+          {
+            "name": "Creep Coefficient for Construction Stage",
+            "endpoint": "/db/CRPC",
+            "article_id": 35987878971545
+          }
+        ],
+        "Heat of Hydration Loads": [
+          {
+            "name": "Ambient Temperature Functions",
+            "endpoint": "/db/ETFC",
+            "article_id": 35988049086489
+          },
+          {
+            "name": "Convection Coefficient Functions",
+            "endpoint": "/db/CCFC",
+            "article_id": 35988168533785
+          },
+          {
+            "name": "Element Convection Boundary",
+            "endpoint": "/db/HECB",
+            "article_id": 35988210740761
+          },
+          {
+            "name": "Prescribed Temperature",
+            "endpoint": "/db/HSPT",
+            "article_id": 35988262538521
+          },
+          {
+            "name": "Heat Source Functions",
+            "endpoint": "/db/HSFC",
+            "article_id": 35988291377305
+          },
+          {
+            "name": "Assign Heat Source",
+            "endpoint": "/db/HAHS",
+            "article_id": 35988378892441
+          },
+          {
+            "name": "Pipe Cooling",
+            "endpoint": "/db/HPCE",
+            "article_id": 35988420776345
+          },
+          {
+            "name": "Define Construction Stage for Hydration",
+            "endpoint": "/db/HSTG",
+            "article_id": 35988442589465
+          }
+        ],
+        "Settlement Loads": [
+          {
+            "name": "Settlement Group",
+            "endpoint": "/db/SMPT",
+            "article_id": 35988516836633
+          },
+          {
+            "name": "Settlement Load Cases",
+            "endpoint": "/db/SMLC",
+            "article_id": 35988560566425
+          }
+        ],
+        "Miscellaneous Loads": [
+          {
+            "name": "Pre-composite Section",
+            "endpoint": "/db/PLCB",
+            "article_id": 35988644139673
+          },
+          {
+            "name": "Load Sequence for Nonlinear",
+            "endpoint": "/db/LDSQ",
+            "article_id": 35988663234329
+          },
+          {
+            "name": "Wave Loads",
+            "endpoint": "/db/WVLD",
+            "article_id": 35988728179097
+          },
+          {
+            "name": "Ignore Elements for Load Cases",
+            "endpoint": "/db/IELC",
+            "article_id": 35988790960921
+          },
+          {
+            "name": "Large Displacement - Initial Forces for Geometric Stiffness",
+            "endpoint": "/db/IFGS",
+            "article_id": 35988857497113
+          },
+          {
+            "name": "Small Displacement - Initial Force Control Data",
+            "endpoint": "/db/EFCT",
+            "article_id": 35988927684633
+          },
+          {
+            "name": "Small Displacement - Initial Element Force",
+            "endpoint": "/db/INMF",
+            "article_id": 35988975670937
+          }
+        ],
+        "Grid Model Analysis Loads": [
+          {
+            "name": "Grid Analysis Load",
+            "endpoint": "/db/GALDᴶ⁾",
+            "article_id": 39236719728281
+          }
+        ],
+        "Analysis": [
+          {
+            "name": "Main Control Data",
+            "endpoint": "/db/ACTL",
+            "article_id": 35409287717657
+          },
+          {
+            "name": "Main Control Data",
+            "endpoint": "/db/ACTL-M1ᴴˢ⁾",
+            "article_id": 56397306107545
+          },
+          {
+            "name": "P-Delta Analysis Control",
+            "endpoint": "/db/PDEL",
+            "article_id": 35989163268249
+          },
+          {
+            "name": "Buckling Analysis Control",
+            "endpoint": "/db/BUCK",
+            "article_id": 35989190592537
+          },
+          {
+            "name": "Eigenvalue Analysis Control",
+            "endpoint": "/db/EIGV",
+            "article_id": 35989224565273
+          },
+          {
+            "name": "Eigenvalue Analysis Control",
+            "endpoint": "/db/EIGV-M1ᴴˢ⁾",
+            "article_id": 56375983487385
+          },
+          {
+            "name": "Heat of Hydration Analysis Control",
+            "endpoint": "/db/HHCT",
+            "article_id": 35989317531417
+          },
+          {
+            "name": "Heat of Hydration Analysis Control",
+            "endpoint": "db/HHCT-M1ᴴˢ⁾",
+            "article_id": 56399833703193
+          },
+          {
+            "name": "Moving Load Analysis Control",
+            "endpoint": "/db/MVCT",
+            "article_id": 35989483364633
+          },
+          {
+            "name": "Moving Load Analysis Control - China",
+            "endpoint": "/db/MVCTch",
+            "article_id": 35989644995609
+          },
+          {
+            "name": "Moving Load Analysis Control - India",
+            "endpoint": "/db/MVCTid",
+            "article_id": 35989643553305
+          },
+          {
+            "name": "Moving Load Analysis Control - BS",
+            "endpoint": "/db/MVCTbs",
+            "article_id": 35989838706969
+          },
+          {
+            "name": "Moving Load Analysis Control - Transverse",
+            "endpoint": "/db/MVCTtr",
+            "article_id": 35989924517401
+          },
+          {
+            "name": "Settlement Analysis Control Data",
+            "endpoint": "/db/SMCT",
+            "article_id": 35990184995481
+          },
+          {
+            "name": "Nonlinear Analysis Control Data",
+            "endpoint": "/db/NLCT",
+            "article_id": 35990229420441
+          },
+          {
+            "name": "Nonlinear Analysis Control",
+            "endpoint": "/db/NLCT-M1ᴴˢ⁾",
+            "article_id": 56506850582425
+          },
+          {
+            "name": "Construction Stage Analysis Control Data",
+            "endpoint": "/db/STCT",
+            "article_id": 35990281053465
+          },
+          {
+            "name": "Construction Stage Analysis Control Data",
+            "endpoint": "/db/STCT-M1ᴴˢ⁾",
+            "article_id": 57053813627673
+          },
+          {
+            "name": "Boundary Change Assignment",
+            "endpoint": "/db/BCCT",
+            "article_id": 35736960800281
+          },
+          {
+            "name": "Assign Boundary Combination",
+            "endpoint": "/db/BCGD-M1ᴴˢ⁾",
+            "article_id": 56374180830745
+          },
+          {
+            "name": "Assign Boundary Combination",
+            "endpoint": "/db/BCGA-M1ᴴˢ⁾",
+            "article_id": 56375029084697
+          }
+        ],
+        "Analysis Results": [
+          {
+            "name": "Load Combinations - General",
+            "endpoint": "/db/LCOM-GEN",
+            "article_id": 35990806887065
+          },
+          {
+            "name": "Load Combinations - Concrete Design",
+            "endpoint": "/db/LCOM-CONC",
+            "article_id": 35990864052249
+          },
+          {
+            "name": "Load Combinations - Steel Design",
+            "endpoint": "/db/LCOM-STEEL",
+            "article_id": 35990929861913
+          },
+          {
+            "name": "Load Combinations - SRC Design",
+            "endpoint": "/db/LCOM-SRC",
+            "article_id": 35991038731161
+          },
+          {
+            "name": "Load Combinations - Composite Steel Girder Design",
+            "endpoint": "/db/LCOM-STLCOMP",
+            "article_id": 35991080923033
+          },
+          {
+            "name": "Load Combinations - Seismic Design",
+            "endpoint": "/db/LCOM-SEISMIC",
+            "article_id": 35991142266265
+          },
+          {
+            "name": "Cutting Line",
+            "endpoint": "/db/CUTL",
+            "article_id": 35991257189017
+          },
+          {
+            "name": "Plate Cutting Line Diagram",
+            "endpoint": "/db/CLWP",
+            "article_id": 35991500289561
+          }
+        ],
+        "Bridge Specialization Results": [
+          {
+            "name": "Bridge Girder Diagrams",
+            "endpoint": "/db/GSBG",
+            "article_id": 35991591178265
+          },
+          {
+            "name": "General Camber Control",
+            "endpoint": "/db/GCMB",
+            "article_id": 35991765204121
+          },
+          {
+            "name": "FCM Camber Control",
+            "endpoint": "/db/CAMB",
+            "article_id": 35991862460697
+          },
+          {
+            "name": "Cable Control - Unknown Load Factor Constraints",
+            "endpoint": "/db/ULFC",
+            "article_id": 35991960319897
+          }
+        ],
+        "Time History Analysis Results": [
+          {
+            "name": "Time History Graph - Element Force Smart Graph",
+            "endpoint": "/db/THRE",
+            "article_id": 39236753314073
+          },
+          {
+            "name": "Time History Graph - General Link Smart Graph",
+            "endpoint": "/db/THRG",
+            "article_id": 35992341376025
+          },
+          {
+            "name": "Time History Graph - Inelastic Hinge Smart Graph",
+            "endpoint": "/db/THRI",
+            "article_id": 35992399685017
+          },
+          {
+            "name": "Time History Graph - Seismic Devices Smart Graph",
+            "endpoint": "/db/THRS",
+            "article_id": 35992460196121
+          }
+        ],
+        "Heat of Hydration Results": [
+          {
+            "name": "Heat of Hydaration Result Graph",
+            "endpoint": "/db/HHND",
+            "article_id": 35992577650841
+          }
+        ],
+        "Pushover": [
+          {
+            "name": "Pushover Analysis Control Data",
+            "endpoint": "/db/POGD",
+            "article_id": 35992664632601
+          },
+          {
+            "name": "Pushover Global Control",
+            "endpoint": "/db/POGD-M1ᴴˢ⁾",
+            "article_id": 56511008007705
+          },
+          {
+            "name": "Ignore Elements for Pushover Intial Load",
+            "endpoint": "/db/IEPI",
+            "article_id": 35992797619097
+          },
+          {
+            "name": "Assign Pushover Hinge Properties",
+            "endpoint": "/db/PHGE",
+            "article_id": 35992838417049
+          },
+          {
+            "name": "Pushover Load Cases",
+            "endpoint": "/db/POLC",
+            "article_id": 35993449470489
+          },
+          {
+            "name": "Pushover Load Case",
+            "endpoint": "/db/POLC-M1ᴴˢ⁾",
+            "article_id": 56506753403673
+          }
+        ],
+        "Design": [
+          {
+            "name": "RC Design Code",
+            "endpoint": "/db/DCON",
+            "article_id": 35993633394969
+          },
+          {
+            "name": "Modify Concrete Materials",
+            "endpoint": "/db/MATD",
+            "article_id": 35993732216985
+          },
+          {
+            "name": "Rebar Input for Checking - Beam/Column",
+            "endpoint": "/db/RCHK",
+            "article_id": 35993850335897
+          },
+          {
+            "name": "Unbraced Length",
+            "endpoint": "/db/LENG",
+            "article_id": 49513511154329
+          },
+          {
+            "name": "Member Assignment",
+            "endpoint": "/db/MEMB",
+            "article_id": 49513603328793
+          },
+          {
+            "name": "Definition of Frame",
+            "endpoint": "/db/DCTL",
+            "article_id": 49513652948377
+          },
+          {
+            "name": "Limiting Slenderness Ratio",
+            "endpoint": "/db/LTSR",
+            "article_id": 49513681377689
+          },
+          {
+            "name": "Underground Load Combination Type",
+            "endpoint": "/db/ULCT",
+            "article_id": 49513792356505
+          },
+          {
+            "name": "Modify Member Type",
+            "endpoint": "/db/MBTP",
+            "article_id": 49513816193689
+          },
+          {
+            "name": "Modify Wall Mark Design",
+            "endpoint": "/db/WMAK",
+            "article_id": 49513846785817
+          },
+          {
+            "name": "Steel Design Code",
+            "endpoint": "/db/DSTL",
+            "article_id": 52149417728665
+          }
+        ]
+      },
+      "endpoints": []
+    },
+    "OPE": {
+      "subsections": {},
+      "endpoints": [
+        {
+          "name": "Project Status",
+          "endpoint": "/ope/PROJECTSTATUS",
+          "article_id": 35994678976281
+        },
+        {
+          "name": "Divide Elements",
+          "endpoint": "/ope/DIVIDEELEM",
+          "article_id": 35994694310937
+        },
+        {
+          "name": "Section Properties Calculation Results",
+          "endpoint": "/ope/SECTPROP",
+          "article_id": 35994769341081
+        },
+        {
+          "name": "Using Load Combinations",
+          "endpoint": "/ope/USLC",
+          "article_id": 35994827741465
+        },
+        {
+          "name": "Line Beam Load",
+          "endpoint": "/ope/LINEBMLD",
+          "article_id": 35994879160857
+        },
+        {
+          "name": "Auto-Mesh Planar Area",
+          "endpoint": "/ope/AUTOMESH",
+          "article_id": 35736427971225
+        },
+        {
+          "name": "Surface Spring",
+          "endpoint": "/ope/SSPS",
+          "article_id": 39772183634329
+        },
+        {
+          "name": "Change Property",
+          "endpoint": "/ope/EDMP",
+          "article_id": 39772649347865
+        },
+        {
+          "name": "Story Calculation",
+          "endpoint": "/ope/STOR",
+          "article_id": 49514653408793
+        },
+        {
+          "name": "Story Check Parameter",
+          "endpoint": "/ope/STORY_PARAM",
+          "article_id": 49514705474457
+        },
+        {
+          "name": "Story Irregularity Check Parameter",
+          "endpoint": "/ope/STORY_IRR_PARAM",
+          "article_id": 49514751862425
+        },
+        {
+          "name": "Story Properties",
+          "endpoint": "/ope/STORPROP",
+          "article_id": 49514773501721
+        },
+        {
+          "name": "Member Assignment",
+          "endpoint": "/ope/MEMB",
+          "article_id": 49514964272665
+        }
+      ]
+    },
+    "VIEW": {
+      "subsections": {},
+      "endpoints": [
+        {
+          "name": "Select",
+          "endpoint": "/view/SELECT",
+          "article_id": 35995942911257
+        },
+        {
+          "name": "Capture",
+          "endpoint": "/view/CAPTURE",
+          "article_id": 35996023805337
+        },
+        {
+          "name": "Dialog Capture",
+          "endpoint": "/view/PRECAPTURE",
+          "article_id": 39236964850329
+        },
+        {
+          "name": "Viewpoint",
+          "endpoint": "/view/ANGLE",
+          "article_id": 35736247981209
+        },
+        {
+          "name": "Active",
+          "endpoint": "/view/ACTIVE",
+          "article_id": 35523395368985
+        },
+        {
+          "name": "Display",
+          "endpoint": "/view/DISPLAY",
+          "article_id": 35996157533977
+        },
+        {
+          "name": "Type of Display",
+          "endpoint": "/view/RESULTGRAPHIC",
+          "article_id": 35996812786841
+        }
+      ]
+    },
+    "POST": {
+      "subsections": {
+        "Pre-Process Table": [
+          {
+            "name": "Element Weight Table",
+            "endpoint": "Element Weight",
+            "article_id": 36007474964249
+          },
+          {
+            "name": "Nodal Body Force Table",
+            "endpoint": "Nodal Body Force",
+            "article_id": 36007518091289
+          },
+          {
+            "name": "Mass Summary Table",
+            "endpoint": "Mass Summary",
+            "article_id": 36007577052441
+          },
+          {
+            "name": "Load Summary Table",
+            "endpoint": "Load Summary",
+            "article_id": 36007640088857
+          },
+          {
+            "name": "Material Table",
+            "endpoint": "Material",
+            "article_id": 43835303404825
+          },
+          {
+            "name": "Section Table",
+            "endpoint": "Section",
+            "article_id": 43835398107801
+          },
+          {
+            "name": "Restraint Support Table",
+            "endpoint": "Restraint Supports",
+            "article_id": 43835481307161
+          },
+          {
+            "name": "Story Mass Summary Table",
+            "endpoint": "Story Mass Summary",
+            "article_id": 49514136996889
+          },
+          {
+            "name": "Story Load Summary Table",
+            "endpoint": "Story Load Summary",
+            "article_id": 49514148775705
+          },
+          {
+            "name": "Story Weight Table",
+            "endpoint": "Story Weight",
+            "article_id": 49514231584921
+          }
+        ],
+        "Analysis Result Table": [
+          {
+            "name": "Reaction - Analysis Result Table",
+            "endpoint": "Reaction-LocalReaction-GlobalReaction-Local-Surface Spring",
+            "article_id": 36009349748249
+          },
+          {
+            "name": "Displacements - Analysis Result Table",
+            "endpoint": "Displacement-LocalDisplacement-Global",
+            "article_id": 36009638400281
+          },
+          {
+            "name": "Truss Force - Analysis Result Table",
+            "endpoint": "Truss Force",
+            "article_id": 36009739012249
+          },
+          {
+            "name": "Cable Force - Analysis Result Table",
+            "endpoint": "Cable Force",
+            "article_id": 36010315199001
+          },
+          {
+            "name": "Beam Force - Analysis Result Table",
+            "endpoint": "Beam ForceBeam Force-View by Max Value Item",
+            "article_id": 36011262919705
+          },
+          {
+            "name": "Plate Force (Local) - Analysis Result Table",
+            "endpoint": "Plate Force-Local",
+            "article_id": 36012451576985
+          },
+          {
+            "name": "Plane Force (Local) - Analysis Result Table",
+            "endpoint": "Plane Stress Force-Local",
+            "article_id": 36013533471769
+          },
+          {
+            "name": "Plane Strain Force (Local) - Analysis Result Table",
+            "endpoint": "Plane Strain Force-Local",
+            "article_id": 36013937993881
+          },
+          {
+            "name": "Axisymmetric Force (Local) - Analysis Result Table",
+            "endpoint": "Axisymmetric Force-Local",
+            "article_id": 36014348032409
+          },
+          {
+            "name": "Solid Force (Local) - Analysis Result Table",
+            "endpoint": "Solid Force-Local",
+            "article_id": 36015113863449
+          },
+          {
+            "name": "Elastic Link - Analysis Result Table",
+            "endpoint": "Elastic LinkView by Max Value Item",
+            "article_id": 36017416195737
+          },
+          {
+            "name": "General Link - Analysis Result Table",
+            "endpoint": "General Link ForceGeneral Link Force-View by Max Value ItemGeneral Link Deformation",
+            "article_id": 36017500761369
+          },
+          {
+            "name": "Resultant Forces - Analysis Result Table",
+            "endpoint": "Resultant ForceResultant Force-View by Max Value Item",
+            "article_id": 36017614482201
+          },
+          {
+            "name": "Vibration Mode Shape - Analysis Result Table",
+            "endpoint": "Vibartion Mode-EigenvalueVibartion Mode-Participation Vector",
+            "article_id": 36017669319321
+          },
+          {
+            "name": "Buckling Mode Shape - Analysis Result Table",
+            "endpoint": "Buckling Mode",
+            "article_id": 36017712087065
+          },
+          {
+            "name": "Effective Span Length - Analysis Result Table",
+            "endpoint": "Effective Span Length-TrussEffective Span Length-BeamEffective Span Length-Plate",
+            "article_id": 36017771824281
+          },
+          {
+            "name": "Nodal Results of RS - Analysis Result Table",
+            "endpoint": "Nodal Results of RS-Inertia ForceNodal Results of RS-Acceleration",
+            "article_id": 36017837129241
+          },
+          {
+            "name": "Tendon Coordinates - Analysis Result Table",
+            "endpoint": "Tendon Coordinates",
+            "article_id": 36017935058713
+          },
+          {
+            "name": "Composite Section for C.S. (Force and Stress) - Analysis Result Table",
+            "endpoint": "Composite Section for C.S. ForceComposite Section for C.S. Stress",
+            "article_id": 36018521410457
+          },
+          {
+            "name": "Element Properties at Each Stage - Analysis Result Table",
+            "endpoint": "Element Properties at Each Stage",
+            "article_id": 36018688503065
+          },
+          {
+            "name": "Lack of Fit Force (Truss) - Analysis Result Table",
+            "endpoint": "Lack of Fit Force-Truss",
+            "article_id": 36018798699161
+          },
+          {
+            "name": "Equilibrium Element Nodal Force - Analysis Result Table",
+            "endpoint": "Equilibrium Element Nodal Force",
+            "article_id": 36018955537177
+          },
+          {
+            "name": "Initial Element Force - Analysis Result Table",
+            "endpoint": "Initial Element Force",
+            "article_id": 36018962493721
+          },
+          {
+            "name": "Wall Force/Moment - Analysis Result Table",
+            "endpoint": "Wall Force/Moment",
+            "article_id": 49513398732953
+          }
+        ],
+        "Analysis Story Table": [
+          {
+            "name": "Story Drift  - Analysis Story Table",
+            "endpoint": "Story Drift (X,Y,Combined)",
+            "article_id": 49511531295257
+          },
+          {
+            "name": "Story Displacement  - Analysis Story Table",
+            "endpoint": "Story Displacement (X,Y,Combined)",
+            "article_id": 49511597474713
+          },
+          {
+            "name": "Story Shear(R.S Analysis)  - Analysis Story Table",
+            "endpoint": "Story Shear(R.S Analysis) - Story Shear(for R.S)Story Shear(R.S.Analysis) - Story Shear Force Coefficient",
+            "article_id": 49511717907097
+          },
+          {
+            "name": "Story Mode Shape - Analysis Story Table",
+            "endpoint": "Story Mode Shape",
+            "article_id": 49511927443481
+          },
+          {
+            "name": "Story Shear Force Ratio - Analysis Story Table",
+            "endpoint": "Story Shear Force Ratio",
+            "article_id": 49512411760665
+          },
+          {
+            "name": "Story Eccentricity - Analysis Story Table",
+            "endpoint": "Story Eccentricity",
+            "article_id": 49511990423833
+          },
+          {
+            "name": "Overturning Moment - Analysis Story Table",
+            "endpoint": "Overturning Moment",
+            "article_id": 49512035391641
+          },
+          {
+            "name": "Story Axial Force Sum - Analysis Story Table",
+            "endpoint": "Story Axial Force Sum",
+            "article_id": 49512116327065
+          },
+          {
+            "name": "Story Stability Coefficient - Analysis Story Table",
+            "endpoint": "Story Stability Coefficient",
+            "article_id": 49512818237849
+          },
+          {
+            "name": "Torsional Irregularity Check - Analysis Story Table",
+            "endpoint": "Torsional Irregularity Check",
+            "article_id": 49512900149017
+          },
+          {
+            "name": "Torsional Amplification Factor - Analysis Story Table",
+            "endpoint": "Torsional Amplification Factor",
+            "article_id": 49513005384089
+          },
+          {
+            "name": "Stiffness Irregularity Check (Soft Story) - Analysis Story Table",
+            "endpoint": "Stiffness Irregularity Check (Soft Story)",
+            "article_id": 49513107644057
+          },
+          {
+            "name": "Capacity Irregularity Check(Weak Story) - Analysis Story Table",
+            "endpoint": "Capacity Irregularity Check(Weak Story)",
+            "article_id": 49513198751385
+          },
+          {
+            "name": "Criteria for Regularity in Plan - Analysis Story Table",
+            "endpoint": "Criteria for Regularity in Plan",
+            "article_id": 49513284077721
+          },
+          {
+            "name": "Ultimate Story Shear For Check - Analysis Story Table",
+            "endpoint": "Ultimate Story Shear For Check",
+            "article_id": 49513305580569
+          }
+        ],
+        "Time History Result Table": [
+          {
+            "name": "Displacement/Velocity/Acceleration - TH Result Table",
+            "endpoint": "DisplacementVelocityAbsolute AccelerationRelative Acceleration",
+            "article_id": 36019076720921
+          },
+          {
+            "name": "Beam Force - TH Result Table",
+            "endpoint": "Beam Force",
+            "article_id": 36020023438361
+          },
+          {
+            "name": "Truss Force - TH Result Table",
+            "endpoint": "Truss Force",
+            "article_id": 36020089749913
+          },
+          {
+            "name": "General Link - TH Result Table",
+            "endpoint": "General Link ForceDeformation",
+            "article_id": 36020136483353
+          },
+          {
+            "name": "Inelastic Hinge Event Time - TH Result Table",
+            "endpoint": "Event Time-LumpedEvent Time-DistributedEvent Time-WallEvent Time-TrussEvent Time-Spring",
+            "article_id": 36020215503257
+          },
+          {
+            "name": "Inelastic Hinge Beam Summary - TH Result Table",
+            "endpoint": "Beam Summary-DXBeam Summary-DYBeam Summary-DZBeam Summary-RYBeam Summary-RZ",
+            "article_id": 36020290127513
+          },
+          {
+            "name": "Inelastic Hinge Truss Summary - TH Result Table",
+            "endpoint": "Truss Summary-DX",
+            "article_id": 36020311969305
+          },
+          {
+            "name": "Inelastic Hinge General Link Summary - TH Result Table",
+            "endpoint": "General Link Summary-DXGeneral Link Summary-DYGeneral Link Summary-DZGeneral Link Summary-RXGeneral Link Summary-RYGeneral Link Summary-RZ",
+            "article_id": 36020391511961
+          },
+          {
+            "name": "Inelastic Hinge Force - TH Result Table",
+            "endpoint": "Force-LumpedForce-DistributedForce-WallForce-TrussForce-Spring",
+            "article_id": 36020436094105
+          },
+          {
+            "name": "Inelastic Hinge Deformation - TH Result Table",
+            "endpoint": "Deformation-LumpedDeformation-DistributedDeformation-WallDeformation-TrussDeformation-Spring",
+            "article_id": 36020548520601
+          },
+          {
+            "name": "Inelastic Hinge Element Rotation - TH Result Table",
+            "endpoint": "Element Rotation-BeamElement Rotation-Wall",
+            "article_id": 36020688077209
+          },
+          {
+            "name": "Inelastic Hinge Ductility Factor(D/D1) - TH Result Table",
+            "endpoint": "Ductility Factor(D/D1)-LumpedDuctility Factor(D/D1)-DistributedDuctility Factor(D/D1)-WallDuctility Factor(D/D1)-TrussDuctility Factor(D/D1)-Spring",
+            "article_id": 36020795064089
+          },
+          {
+            "name": "Inelastic Hinge Ductility Factor(D/D2) - TH Result Table",
+            "endpoint": "Ductility Factor(D/D2)-LumpedDuctility Factor(D/D2)-DistributedDuctility Factor(D/D2)-WallDuctility Factor(D/D2)-TrussDuctility Factor(D/D2)-Spring",
+            "article_id": 36020877017497
+          },
+          {
+            "name": "Fiber Section Estimate Yield Strength - TH Result Table",
+            "endpoint": "Estimate Yield Strength",
+            "article_id": 39237582598937
+          },
+          {
+            "name": "Fiber Section Elastic Modulus Retention Rate - TH Result Table",
+            "endpoint": "Elastic Modulus Retention Rateᴶ⁾",
+            "article_id": 39237678441497
+          },
+          {
+            "name": "Fiber Section Maximum Strain of The Cell - TH Result Table",
+            "endpoint": "Maximum Strain of The Cellᴶ⁾",
+            "article_id": 39237774129433
+          },
+          {
+            "name": "Fiber Section Event Step - TH Result Table",
+            "endpoint": "Event Stepᴶ⁾",
+            "article_id": 39237785220505
+          },
+          {
+            "name": "Fiber Section Average Compression Strain - TH Result Table",
+            "endpoint": "Average Compression Strainᴶ⁾",
+            "article_id": 39237854424601
+          }
+        ],
+        "Heat of Hydration Result Table": [
+          {
+            "name": "Stress - HY Result Table",
+            "endpoint": "Stress-LocalStress-Global",
+            "article_id": 36020924196249
+          },
+          {
+            "name": "Temperature - HY Result Table",
+            "endpoint": "Temperature",
+            "article_id": 36020983264793
+          },
+          {
+            "name": "Displacement - HY Result Table",
+            "endpoint": "Displacement",
+            "article_id": 36021071108377
+          },
+          {
+            "name": "Tensile Stress - HY Result Table",
+            "endpoint": "Tensile Stress",
+            "article_id": 36021119165081
+          },
+          {
+            "name": "Pipe Cooling Nodal Temperature - HY Result Table",
+            "endpoint": "Pipe Cooling Nodal Temperature",
+            "article_id": 36021224509977
+          }
+        ],
+        "Time History Text": [
+          {
+            "name": "Time History Text - Node Results",
+            "endpoint": "Node Results",
+            "article_id": 36704969941913
+          },
+          {
+            "name": "Time History Text - Element Result(Truss, Beam, Plane Stress/Strain, Solid)",
+            "endpoint": "Element Result(Truss, Beam, Plane Stress/Strain, Solid)",
+            "article_id": 36705161290649
+          },
+          {
+            "name": "Time History Text - Element Result(Plate)",
+            "endpoint": "Element Result(Plate)",
+            "article_id": 36705400674585
+          },
+          {
+            "name": "Time History Text - Element Result(Wall)",
+            "endpoint": "Element Result(Wall)",
+            "article_id": 36705611314585
+          },
+          {
+            "name": "Time History Text - General Link Result",
+            "endpoint": "General Link Result",
+            "article_id": 36705822943257
+          }
+        ],
+        "Pushover Text": [
+          {
+            "name": "Pushover Text - Displacement Result",
+            "endpoint": "Displacement Result",
+            "article_id": 36705962238873
+          },
+          {
+            "name": "Pushover Text - Element Result(Beam, Truss)",
+            "endpoint": "Element Result(Beam, Truss)",
+            "article_id": 36706062373657
+          },
+          {
+            "name": "Pushover Text - Element Result(Wall)",
+            "endpoint": "Element Result(Wall)",
+            "article_id": 36706217576217
+          },
+          {
+            "name": "Pushover Text - General Link Result",
+            "endpoint": "General Link Result",
+            "article_id": 36706344369049
+          },
+          {
+            "name": "Pushover Text - Elastic Link Result",
+            "endpoint": "Elastic Link Result",
+            "article_id": 36706383777817
+          }
+        ],
+        "Design": [
+          {
+            "name": "P-M Interaction Diagram",
+            "endpoint": "/post/PM",
+            "article_id": 36021337973017
+          },
+          {
+            "name": "Steel Code Check",
+            "endpoint": "/post/STEELCODECHECK",
+            "article_id": 44662732910233
+          },
+          {
+            "name": "Concrete Design - Beam Design Force",
+            "endpoint": "/post/BEAMDESIGNFORCES",
+            "article_id": 49514295460889
+          },
+          {
+            "name": "Concrete Design - Column Design Forces",
+            "endpoint": "/post/COLUMNDESIGNFORCES",
+            "article_id": 49514320078489
+          },
+          {
+            "name": "Concrete Design - Brace Design Forces",
+            "endpoint": "/post/BRACEDESIGNFORCES",
+            "article_id": 49514395318041
+          },
+          {
+            "name": "Concrete Design - Wall Design Forces",
+            "endpoint": "/post/WALLDESIGNFORCES",
+            "article_id": 49514433321881
+          },
+          {
+            "name": "Steel Design - Steel Member Design Forces",
+            "endpoint": "/post/STEELMEMBERDESIGNFORCES",
+            "article_id": 49514496461593
+          },
+          {
+            "name": "SRC Design - SRC Beam Design Forces",
+            "endpoint": "/post/SRCBEAMDESIGNFORCES",
+            "article_id": 49514560567961
+          },
+          {
+            "name": "SRC Design - SRC Column Design Forces",
+            "endpoint": "/post/SRCCOLUMNDESIGNFORCES SRC",
+            "article_id": 49514609393049
+          },
+          {
+            "name": "Cold Formed Design - Cold Formed Steel Member Design Forces",
+            "endpoint": "/post/COLDFORMEDSTEELMEMBERDESIGNFORCES",
+            "article_id": 49514621265305
+          }
+        ]
+      },
+      "endpoints": []
+    }
+  }
+}
